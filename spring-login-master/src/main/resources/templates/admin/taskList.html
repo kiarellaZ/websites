@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<style>
+		body{	
+			background-image: url(https://compleatcook.ca/wp-content/uploads/2017/12/christmas-background-1024x667.jpg);
+		}
+		 	HTML,BODY{cursor: url("https://www.iolecal.it/blog/posts200/post200/xmas0_3.png"), auto;
+		}
+	</style>
+
+	<audio autoplay>
+	<source src="http://www.freexmasmp3.com/files/we-wish-you-a-merry-christmas.mp3" type="audio/mpeg">
+</audio> 
+
+
+	<div th:replace="admin/header::header"></div>
+		<div layout:fragment="content"></div>
+		
+		<br>
+		<br>
+		<div layout:fragment="content" class="container mySpace">
+			<form action="/tasks" class="form-inline">
+				<div class="form-group mb-2">
+				<input type="text" class="form-control" name="email" placeholder="Cerca task" />
+				<input type="submit" value="Search" class="btn btn-primary" style="background-color: green"/>
+				</div>
+			</form>
+			
+			<div class="card">
+				<div class="card card-body">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Start Time</th>
+								<th>Stop Time</th>
+								<th>Description</th>
+								<th>User</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="task:${tasks}">
+								<td th:text="${task.date}"></td>
+								<td th:text="${task.startTime}"></td>
+								<td th:text="${task.stopTime}"></td>
+								<td th:text="${task.description}"></td>
+								<td th:text="${task.user.email}"></td>
+								
+							</tr>
+						</tbody>
+						<br>
+					</table>
+				</div>
+			</div>
+		</div>
+<div th:replace="admin/footer::footer"></div>
+
+</body>
+</html>
